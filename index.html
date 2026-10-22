@@ -39,7 +39,7 @@
             height: 30mm;
             box-sizing: border-box;
             background: #ffffff;
-            border: 1px solid #cbd5e1;
+            border: 1px solid #000000;
             padding: 1.5mm 2mm;
             overflow: hidden;
             position: relative;
@@ -48,9 +48,10 @@
             justify-content: space-between;
             font-size: 7.5pt;
             line-height: 1.15;
-            color: #000000;
+            color: #000000 !important;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             flex-shrink: 0;
+            -webkit-print-color-adjust: exact;
         }
 
         /* ---------------- KÍCH THƯỚC TEM HÒA HỢP (100x30mm - 1 Tem/Hàng) ---------------- */
@@ -464,7 +465,7 @@
             }
         }
 
-        // Template cho Tem Ống Chéo (50x30mm - 2 Tem/Hàng)
+        // Template cho Tem Ống Chéo (50x30mm - 2 Tem/Hàng) - Đã ép màu chữ #000000
         function createTubeLabelHTML(prod, idx) {
             const patientName = document.getElementById('patientName').value.trim();
             const department = document.getElementById('department').value.trim();
@@ -472,27 +473,27 @@
             const patientRh = document.getElementById('patientRh').value;
 
             return `
-                <div class="label-50x30 rounded sm:rounded-none shadow-md">
-                    <div class="flex justify-between items-center border-b border-black pb-0.5 font-bold text-[7pt]">
+                <div class="label-50x30 rounded sm:rounded-none shadow-md" style="color: #000000 !important;">
+                    <div class="flex justify-between items-center border-b border-black pb-0.5 font-bold text-[7pt]" style="color: #000000 !important;">
                         <span class="truncate max-w-[32mm] uppercase">MÁU CHÉO - ${department || '...'}</span>
                         <span>${idx + 1}/${products.length}</span>
                     </div>
                     <div class="mt-0.5">
-                        <div class="font-bold text-[8.5pt] leading-none truncate uppercase">${patientName || '....................'}</div>
-                        <div class="flex justify-between items-center text-[7pt] mt-0.5">
-                            <span>Khoa: <strong>${department || '...'}</strong></span>
-                            <span class="bg-black text-white px-1 font-bold rounded-sm text-[6.5pt]">BN: ${patientABO ? patientABO + patientRh : '...'}</span>
+                        <div class="font-bold text-[8.5pt] leading-none truncate uppercase" style="color: #000000 !important;">${patientName || '....................'}</div>
+                        <div class="flex justify-between items-center text-[7pt] mt-0.5" style="color: #000000 !important;">
+                            <span>Khoa: <strong style="color: #000000 !important;">${department || '...'}</strong></span>
+                            <span style="color: #000000 !important; font-weight: bold; font-size: 6.5pt;">BN: ${patientABO ? patientABO + patientRh : '...'}</span>
                         </div>
                     </div>
-                    <div class="border-t border-b border-dashed border-slate-800 my-0.5 py-0.5 bg-slate-50">
-                        <div class="font-black text-[7.5pt] uppercase leading-tight truncate text-black">CP: ${prod.name || '...'}</div>
-                        <div class="flex justify-between text-[6.5pt] font-semibold text-slate-800">
-                            <span>Nhóm CP: <strong>${prod.abo ? prod.abo + prod.rh : '...'}</strong></span>
+                    <div class="border-t border-b border-dashed my-0.5 py-0.5 bg-white" style="border-color: #000000 !important; color: #000000 !important;">
+                        <div class="font-black text-[7.5pt] uppercase leading-tight truncate" style="color: #000000 !important;">CP: ${prod.name || '...'}</div>
+                        <div class="flex justify-between text-[6.5pt] font-semibold" style="color: #000000 !important;">
+                            <span>Nhóm CP: <strong style="color: #000000 !important;">${prod.abo ? prod.abo + prod.rh : '...'}</strong></span>
                         </div>
                     </div>
-                    <div class="flex flex-col justify-center items-center my-auto py-0.5 text-center">
-                        <span class="text-[6.5pt] text-slate-600 font-semibold uppercase leading-none">Mã chế phẩm</span>
-                        <span class="mono font-black text-[11pt] tracking-wider text-black leading-tight">${prod.code || '----------'}</span>
+                    <div class="flex flex-col justify-center items-center my-auto py-0.5 text-center" style="color: #000000 !important;">
+                        <span class="text-[6.5pt] font-semibold uppercase leading-none" style="color: #000000 !important;">Mã chế phẩm</span>
+                        <span class="mono font-black text-[11pt] tracking-wider leading-tight" style="color: #000000 !important;">${prod.code || '----------'}</span>
                     </div>
                 </div>
             `;
