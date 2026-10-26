@@ -136,7 +136,7 @@
 
         .barcode-svg {
             width: 100%;
-            max-height: 12mm;
+            max-height: 16mm;
             display: block;
         }
 
@@ -473,7 +473,7 @@
             }
         }
 
-        // Template cho Tem Ống Chéo (50x30mm - 2 Tem/Hàng) - Họ tên lên đỉnh, Khoa & BN chung 1 dòng
+        // Template cho Tem Ống Chéo (50x30mm - 2 Tem/Hàng)
         function createTubeLabelHTML(prod, idx) {
             const patientName = document.getElementById('patientName').value.trim();
             const department = document.getElementById('department').value.trim();
@@ -494,15 +494,15 @@
                         <span style="color: #000000 !important; font-weight: bold; font-size: 7pt;">BN: ${patientABO ? patientABO + patientRh : '...'}</span>
                     </div>
 
-                    <!-- Phần Chế Phẩm Máu -->
-                    <div class="border-t border-b border-dashed my-0.5 py-0.5 bg-white" style="border-color: #000000 !important; color: #000000 !important;">
-                        <div class="font-black text-[7.5pt] uppercase leading-tight truncate" style="color: #000000 !important;">CP: ${prod.name || '...'}</div>
-                        <div class="flex justify-between text-[6.5pt] font-semibold" style="color: #000000 !important;">
-                            <span>Nhóm CP: <strong style="color: #000000 !important;">${prod.abo ? prod.abo + prod.rh : '...'}</strong></span>
+                    <!-- Dòng 3: CP và Nhóm CP chung 1 hàng -->
+                    <div class="border-t border-b border-dashed my-0.5 py-0.5 bg-white flex justify-between items-center" style="border-color: #000000 !important; color: #000000 !important;">
+                        <div class="font-black text-[7.5pt] uppercase leading-tight truncate max-w-[28mm]" style="color: #000000 !important;">CP: ${prod.name || '...'}</div>
+                        <div class="text-[7pt] font-semibold whitespace-nowrap" style="color: #000000 !important;">
+                            Nhóm: <strong style="color: #000000 !important;">${prod.abo ? prod.abo + prod.rh : '...'}</strong>
                         </div>
                     </div>
 
-                    <!-- Phần Barcode Code 128 -->
+                    <!-- Phần Barcode Code 128 (Đã tăng chiều cao) -->
                     <div class="flex flex-col justify-center items-center my-auto py-0 text-center" style="color: #000000 !important;">
                         <svg class="barcode-svg" data-barcode="${prod.code || ''}"></svg>
                     </div>
@@ -576,7 +576,7 @@
                         JsBarcode(el, code, {
                             format: "CODE128",
                             width: 1.2,
-                            height: 22,
+                            height: 32, // Tăng chiều cao thanh barcode
                             displayValue: true,
                             fontSize: 10,
                             fontOptions: "bold",
@@ -651,7 +651,7 @@
                         JsBarcode(el, code, {
                             format: "CODE128",
                             width: 1.2,
-                            height: 22,
+                            height: 32, // Tăng chiều cao thanh barcode
                             displayValue: true,
                             fontSize: 10,
                             fontOptions: "bold",
