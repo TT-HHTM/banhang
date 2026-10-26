@@ -476,16 +476,21 @@
         // Template cho Tem Ống Chéo (50x30mm - 2 Tem/Hàng)
         function createTubeLabelHTML(prod, idx) {
             const patientName = document.getElementById('patientName').value.trim();
+            const patientAge = document.getElementById('patientAge').value.trim();
             const department = document.getElementById('department').value.trim();
             const patientABO = document.getElementById('patientABO').value;
             const patientRh = document.getElementById('patientRh').value;
 
+            // Tạo chuỗi Tên - Tuổi cho dòng 1
+            const nameStr = patientName || '....................';
+            const ageStr = patientAge ? ` - ${patientAge}` : ' - .....';
+            const topHeader = `${nameStr}${ageStr}`;
+
             return `
                 <div class="label-50x30 rounded sm:rounded-none shadow-md" style="color: #000000 !important;">
-                    <!-- Dòng 1 (Đỉnh): Họ tên Bệnh Nhân & Số thứ tự tem -->
-                    <div class="flex justify-between items-center border-b border-black pb-0.5 font-bold text-[8.5pt]" style="color: #000000 !important;">
-                        <span class="truncate max-w-[36mm] uppercase leading-none" style="color: #000000 !important;">${patientName || '....................'}</span>
-                        <span class="text-[7pt] leading-none">${idx + 1}/${products.length}</span>
+                    <!-- Dòng 1 (Đỉnh): Họ tên Bệnh Nhân - Tuổi -->
+                    <div class="border-b border-black pb-0.5 font-bold text-[8.5pt] truncate uppercase leading-none" style="color: #000000 !important;">
+                        ${topHeader}
                     </div>
 
                     <!-- Dòng 2: Khoa và BN cùng 1 dòng -->
