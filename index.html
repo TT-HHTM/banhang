@@ -481,7 +481,6 @@
             const patientABO = document.getElementById('patientABO').value;
             const patientRh = document.getElementById('patientRh').value;
 
-            // Tạo chuỗi Tên - Tuổi cho dòng 1
             const nameStr = patientName || '....................';
             const ageStr = patientAge ? ` - ${patientAge}` : ' - .....';
             const topHeader = `${nameStr}${ageStr}`;
@@ -507,7 +506,7 @@
                         </div>
                     </div>
 
-                    <!-- Phần Barcode Code 128 (Đã tăng chiều cao) -->
+                    <!-- Phần Barcode Code 128 -->
                     <div class="flex flex-col justify-center items-center my-auto py-0 text-center" style="color: #000000 !important;">
                         <svg class="barcode-svg" data-barcode="${prod.code || ''}"></svg>
                     </div>
@@ -515,7 +514,7 @@
             `;
         }
 
-        // Template cho Tem Hòa Hợp (100x30mm - 1 Tem/Dòng)
+        // Template cho Tem Hòa Hợp (100x30mm - 1 Tem/Dòng) - Đã xóa mục Mã túi
         function createHarmonyLabelHTML(prod, idx) {
             const name = document.getElementById('patientName').value.trim() || '..............................................';
             const age = document.getElementById('patientAge').value.trim() || '.........';
@@ -553,15 +552,11 @@
                         </div>
                     </div>
 
-                    <!-- Dòng 3 -->
+                    <!-- Dòng 3 (Đã xóa Mã túi) -->
                     <div class="label-row-hh">
                         <div class="field-item">
                             <span class="field-label">Tên CP:</span>
                             <span class="value">${prod.name || '....................'}</span>
-                        </div>
-                        <div class="field-item">
-                            <span class="field-label">Mã túi:</span>
-                            <span class="value mono font-black text-[11pt] leading-none">${prod.code || '..........'}</span>
                         </div>
                         <div class="field-item">
                             <span class="field-label">Nhóm máu:</span>
@@ -581,9 +576,9 @@
                         JsBarcode(el, code, {
                             format: "CODE128",
                             width: 1.2,
-                            height: 30, // Tăng chiều cao thanh barcode
+                            height: 32,
                             displayValue: true,
-                            fontSize: 13,
+                            fontSize: 10,
                             fontOptions: "bold",
                             font: "Roboto Mono",
                             margin: 0,
@@ -647,7 +642,6 @@
                 document.body.classList.add('print-mode-harmony');
             }
 
-            // Render lại barcode trong print-area trước khi in
             const printBarcodeElements = printArea.querySelectorAll('.barcode-svg');
             printBarcodeElements.forEach(el => {
                 const code = el.getAttribute('data-barcode');
@@ -656,9 +650,9 @@
                         JsBarcode(el, code, {
                             format: "CODE128",
                             width: 1.2,
-                            height: 32, // Tăng chiều cao thanh barcode
+                            height: 32,
                             displayValue: true,
-                            fontSize: 10,
+                            fontSize: 13,
                             fontOptions: "bold",
                             font: "Roboto Mono",
                             margin: 0,
